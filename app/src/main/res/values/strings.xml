@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">toilet</string>
+    <string name="app_name">Toilet</string>
     <string name="menu_settings">Settings</string>
     <string name="default_app_name">Unknown</string>
     <string name="content_description_app_icon">App icon</string>

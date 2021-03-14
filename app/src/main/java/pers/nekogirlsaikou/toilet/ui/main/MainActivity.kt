@@ -91,7 +91,9 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             R.id.disable_all -> {
                 mAdapter.apps.forEach {
-                    it.disable()
+                    if (it.applicationInfo.enabled){
+                        it.disable()
+                    }
                 }
                 mAdapter.reloadApps()
                 true

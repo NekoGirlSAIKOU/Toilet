@@ -13,6 +13,7 @@ import io.realm.RealmConfiguration
 import pers.nekogirlsaikou.toilet.R
 import pers.nekogirlsaikou.toilet.adapters.AppListAdapter
 import pers.nekogirlsaikou.toilet.databinding.ActivityMainBinding
+import pers.nekogirlsaikou.toilet.ui.AboutActivity
 import pers.nekogirlsaikou.toilet.ui.app_selector.AppSelectorActivity
 import pers.nekogirlsaikou.toilet.utils.disable
 import pers.nekogirlsaikou.toilet.utils.enable
@@ -96,6 +97,11 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 mAdapter.reloadApps()
+                true
+            }
+            R.id.about -> {
+                val intent = Intent(this,AboutActivity::class.java)
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)

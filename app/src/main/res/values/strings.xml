@@ -13,4 +13,6 @@
     <string name="menu_release">Release it from toilet</string>
     <string name="menu_uninstall">Uninstall App</string>
     <string name="menu_disable_all">Disable all</string>
+    <string name="menu_about">About</string>
+    <string name="license">LICENSE</string>
 </resources>

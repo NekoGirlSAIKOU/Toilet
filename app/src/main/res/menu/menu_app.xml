@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/release"
+        android:title="@string/menu_release" />
+    <item
+        android:id="@+id/drop"
+        android:title="@string/menu_drop" />
+    <item
+        android:id="@+id/enable"
+        android:title="@string/menu_enable" />
+    <item
+        android:id="@+id/disable"
+        android:title="@string/menu_disable" />
+    <item
+        android:id="@+id/uninstall"
+        android:title="@string/menu_uninstall" />
+</menu>

@@ -1,4 +1,17 @@
 <resources>
-    <string name="app_name">Toliet</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">toilet</string>
+    <string name="menu_settings">Settings</string>
+    <string name="default_app_name">Unknown</string>
+    <string name="content_description_app_icon">App icon</string>
+    <string name="content_description_disabled">App disabled</string>
+    <string name="title_activity_app_selector">AppSelectorActivity</string>
+    <string name="tab_text_user_apps">User installed Apps</string>
+    <string name="tab_text_all_apps">All Apps</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_drop">Drop App to toilet</string>
+    <string name="menu_enable">Enable App</string>
+    <string name="menu_disable">Disable App</string>
+    <string name="menu_release">Release it from toilet</string>
+    <string name="menu_uninstall">Uninstall App</string>
 </resources>

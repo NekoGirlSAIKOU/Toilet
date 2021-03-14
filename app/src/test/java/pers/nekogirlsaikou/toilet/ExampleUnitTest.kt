@@ -1,4 +1,4 @@
-package pers.nekogirlsaikou.toliet
+package pers.nekogirlsaikou.toilet
 
 import org.junit.Test
 

@@ -1,11 +1,15 @@
 package pers.nekogirlsaikou.toilet.utils
 
+import android.content.Context
 import android.widget.PopupMenu
 import pers.nekogirlsaikou.toilet.R
 import pers.nekogirlsaikou.toilet.adapters.AppListAdapter
 
-fun PopupMenu.setAppMenu(mAdapter:AppListAdapter, position:Int){
+fun PopupMenu.setAppMenu(mAdapter:AppListAdapter, position:Int, context:Context?=null){
     inflate(R.menu.menu_app)
+    if (context == null){
+        menu.findItem(R.id.create_shortcut).setVisible(false)
+    }
     setOnMenuItemClickListener { item ->
         when (item.itemId){
             R.id.release -> {
@@ -16,6 +20,10 @@ fun PopupMenu.setAppMenu(mAdapter:AppListAdapter, position:Int){
             R.id.drop -> {
                 mAdapter.apps[position].dropToToilet()
                 mAdapter.reloadApps()
+                true
+            }
+            R.id.create_shortcut -> {
+                mAdapter.apps[position].createToiletAppShortcut(context!!)
                 true
             }
             R.id.enable -> {

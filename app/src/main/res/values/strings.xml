@@ -16,4 +16,5 @@
     <string name="menu_about">About</string>
     <string name="license">LICENSE</string>
     <string name="select_app">Click to drop into toilet</string>
+    <string name="menu_create_shortcut">Create shortcut</string>
 </resources>

@@ -9,6 +9,10 @@
         android:id="@+id/drop"
         android:title="@string/menu_drop" />
     <item
+        android:id="@+id/create_shortcut"
+        android:title="@string/menu_create_shortcut"
+        android:visible="false" />
+    <item
         android:id="@+id/enable"
         android:title="@string/menu_enable" />
     <item

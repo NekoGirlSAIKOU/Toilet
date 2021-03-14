@@ -15,10 +15,7 @@ import pers.nekogirlsaikou.toilet.adapters.AppListAdapter
 import pers.nekogirlsaikou.toilet.databinding.ActivityMainBinding
 import pers.nekogirlsaikou.toilet.ui.AboutActivity
 import pers.nekogirlsaikou.toilet.ui.app_selector.AppSelectorActivity
-import pers.nekogirlsaikou.toilet.utils.disable
-import pers.nekogirlsaikou.toilet.utils.enable
-import pers.nekogirlsaikou.toilet.utils.isInToilet
-import pers.nekogirlsaikou.toilet.utils.setAppMenu
+import pers.nekogirlsaikou.toilet.utils.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding:ActivityMainBinding
@@ -42,7 +39,8 @@ class MainActivity : AppCompatActivity() {
         mAdapter.onItemLongClickListener = {
             val position = binding.rvApps.getChildAdapterPosition(it)
             val popupMenu = PopupMenu(this,it)
-            popupMenu.setAppMenu(mAdapter,position)
+            popupMenu.setAppMenu(mAdapter,position,this)
+            popupMenu.menu.findItem(R.id.create_shortcut).setVisible(true)
             popupMenu.show()
             true
         }
@@ -51,11 +49,7 @@ class MainActivity : AppCompatActivity() {
             if (!mAdapter.apps[position].applicationInfo.enabled){
                 mAdapter.apps[position].enable()
             }
-            val launchIntent =
-                packageManager.getLaunchIntentForPackage(mAdapter.apps[position].packageName)
-            if (launchIntent != null){
-                startActivity(launchIntent)
-            }
+            mAdapter.apps[position].launch(this)
             mAdapter.reloadAppEnabled(position)
         }
 

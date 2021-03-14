@@ -12,4 +12,5 @@
     <string name="menu_disable">Disable App</string>
     <string name="menu_release">Release it from toilet</string>
     <string name="menu_uninstall">Uninstall App</string>
+    <string name="menu_disable_all">Disable all</string>
 </resources>

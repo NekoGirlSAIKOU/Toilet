@@ -40,7 +40,7 @@ fun PopupMenu.setAppMenu(mAdapter:AppListAdapter, position:Int){
     if (mAdapter.apps[position].isInToilet()){
         this.menu.findItem(R.id.drop).setVisible(false)
     } else {
-        this.menu.findItem(R.id.release).setVisible(true)
+        this.menu.findItem(R.id.release).setVisible(false)
     }
     if (mAdapter.apps[position].applicationInfo.enabled){
         this.menu.findItem(R.id.enable).setVisible(false)

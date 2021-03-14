@@ -3,8 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="pers.nekogirlsaikou.toilet.ui.main.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/disable_all"
         android:orderInCategory="100"
+        android:title="@string/menu_disable_all" />
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="101"
         android:title="@string/menu_settings"
         app:showAsAction="never" />
 </menu>

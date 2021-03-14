@@ -1,6 +1,9 @@
 package pers.nekogirlsaikou.toilet.utils
 
 import android.content.pm.PackageInfo
+import io.realm.Realm
+import io.realm.kotlin.where
+import pers.nekogirlsaikou.toilet.model.AppInToilet
 
 fun PackageInfo.disable(){
     Root.runRootCommand("pm disable "+ this.packageName)
@@ -15,13 +18,25 @@ fun PackageInfo.uninstall(){
 }
 
 fun PackageInfo.dropToToilet(){
-    TODO()
+    //disable()
+    Realm.getDefaultInstance().executeTransaction{
+        it.insert(AppInToilet(this.packageName))
+    }
 }
 
 fun PackageInfo.releaseFromToilet(){
-    TODO()
+    //enable()
+    Realm.getDefaultInstance().executeTransaction {
+        it.where<AppInToilet>()
+            .equalTo("packageName",this.packageName)
+            .findFirst()
+            ?.deleteFromRealm()
+    }
 }
 
 fun PackageInfo.isInToilet():Boolean{
-    return true
+    return Realm.getDefaultInstance()
+        .where<AppInToilet>()
+        .equalTo("packageName",this.packageName)
+        .findFirst() != null
 }

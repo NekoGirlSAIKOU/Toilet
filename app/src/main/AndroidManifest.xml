@@ -30,6 +30,13 @@
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
+        <receiver android:name=".boardcast.LockScreenBoardcastReceiver"  android:exported="true">
+            <!--Seems useless-->
+            <intent-filter>
+                <action android:name="android.intent.action.SCREEN_OFF" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

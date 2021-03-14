@@ -18,14 +18,14 @@ fun PackageInfo.uninstall(){
 }
 
 fun PackageInfo.dropToToilet(){
-    //disable()
+    disable()
     Realm.getDefaultInstance().executeTransaction{
         it.insert(AppInToilet(this.packageName))
     }
 }
 
 fun PackageInfo.releaseFromToilet(){
-    //enable()
+    enable()
     Realm.getDefaultInstance().executeTransaction {
         it.where<AppInToilet>()
             .equalTo("packageName",this.packageName)

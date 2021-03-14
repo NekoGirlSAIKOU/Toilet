@@ -15,4 +15,5 @@
     <string name="menu_disable_all">Disable all</string>
     <string name="menu_about">About</string>
     <string name="license">LICENSE</string>
+    <string name="select_app">Click to drop into toilet</string>
 </resources>

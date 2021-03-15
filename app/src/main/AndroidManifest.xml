@@ -27,16 +27,10 @@
         <activity
             android:name=".ui.LaunchAppActivity"
             android:theme="@android:style/Theme.NoDisplay">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.DisableAllActivity"
             android:theme="@android:style/Theme.NoDisplay">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-            </intent-filter>
         </activity>
         <receiver android:name=".broadcast.LockScreenBroadcastReceiver"  android:exported="true">
             <!--Seems useless-->

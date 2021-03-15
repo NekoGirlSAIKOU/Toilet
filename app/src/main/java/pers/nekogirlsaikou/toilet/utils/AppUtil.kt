@@ -53,46 +53,16 @@ fun PackageInfo.isInToilet(): Boolean {
 }
 
 fun PackageInfo.createToiletAppShortcut(context: Context) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        val shortcutManager = context.getSystemService(ShortcutManager::class.java)
-        if (shortcutManager!!.isRequestPinShortcutSupported) {
-            val shortcutIntent = Intent(context, LaunchAppActivity::class.java)
-                    .setAction(Intent.ACTION_MAIN)
-                    .putExtra("packageName", this.packageName)
+    val shortcutIntent = Intent(context, LaunchAppActivity::class.java)
+        .setAction(Intent.ACTION_MAIN)
+        .putExtra("packageName", this.packageName)
 
-            val shortcutInfo = ShortcutInfo.Builder(context, "launch-${this.packageName}")
-                    .setIcon(context.packageManager.getApplicationIcon(applicationInfo).toIcon())
-                    .setShortLabel(context.packageManager.getApplicationLabel(this.applicationInfo))
-                    .setIntent(shortcutIntent)
-                    .build()
-
-
-            //shortcutManager.requestPinShortcut(shortcutInfo, null)
-            //return
-
-            val pinnedShortcutCallbackIntent = shortcutManager.createShortcutResultIntent(shortcutInfo)
-
-            val successCallback = PendingIntent.getBroadcast(context, /* request code */ 0,
-                    pinnedShortcutCallbackIntent, /* flags */ 0)
-            shortcutManager.requestPinShortcut(shortcutInfo, successCallback.intentSender)
-        } else {
-            createToiletAppShortcut_legacy(context)
-        }
-    } else {
-        createToiletAppShortcut_legacy(context)
+    ShortcutCreator(context,"launch-${this.packageName}").apply {
+        setIcon(context.packageManager.getApplicationIcon(applicationInfo).toIcon())
+        setShortLabel(context.packageManager.getApplicationLabel(applicationInfo))
+        setLauncherIntent(shortcutIntent)
+        createShortcut()
     }
-}
-
-private fun PackageInfo.createToiletAppShortcut_legacy(context: Context) {
-    val launcherIntent = Intent(context, LaunchAppActivity::class.java)
-            .setAction(Intent.ACTION_MAIN)
-            .putExtra("packageName", this.packageName)
-            .addCategory(Intent.CATEGORY_LAUNCHER)
-    val intent = Intent("com.android.launcher.action.INSTALL_SHORTCUT")
-            .putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,context.packageManager.getApplicationIcon(applicationInfo).toIcon())
-            .putExtra(Intent.EXTRA_SHORTCUT_NAME, context.packageManager.getApplicationLabel(this.applicationInfo))
-            .putExtra(Intent.EXTRA_SHORTCUT_INTENT, launcherIntent)
-    context.sendBroadcast(intent)
 }
 
 fun PackageInfo.launch(context: Context) {

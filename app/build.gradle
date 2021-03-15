@@ -5,6 +5,12 @@ plugins {
     id 'realm-android'
 }
 
+ext {
+    git = org.ajoberstar.grgit.Grgit.open()
+    gitVersionCode = git.tag.list().size()
+    gitVersionName = "${git.describe()}"
+}
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -13,8 +19,8 @@ android {
         applicationId "pers.nekogirlsaikou.toilet"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode gitVersionCode
+        versionName gitVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -43,7 +49,6 @@ realm {
 }
 
 dependencies {
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'androidx.appcompat:appcompat:1.2.0'

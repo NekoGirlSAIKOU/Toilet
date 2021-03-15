@@ -27,6 +27,9 @@ fun PackageInfo.enable(){
 }
 
 fun PackageInfo.uninstall(){
+    if (!applicationInfo.enabled){
+        enable()
+    }
     Root.runRootCommand("pm uninstall " + this.packageName)
 }
 

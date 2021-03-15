@@ -13,4 +13,17 @@
             android:targetClass="pers.nekogirlsaikou.toilet.ui.DisableAllActivity" />
         <categories android:name="android.shortcut.conversation" />
     </shortcut>
+    <shortcut
+        android:shortcutId="add_app"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_input_add"
+        android:shortcutShortLabel="@string/menu_drop"
+        android:shortcutLongLabel="@string/menu_drop"
+        android:shortcutDisabledMessage="@string/menu_drop">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="pers.nekogirlsaikou.toilet"
+            android:targetClass="pers.nekogirlsaikou.toilet.ui.app_selector.AppSelectorActivity" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
 </shortcuts>

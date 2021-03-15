@@ -61,8 +61,7 @@ fun PackageInfo.createToiletAppShortcut(context: Context) {
         setIcon(context.packageManager.getApplicationIcon(applicationInfo).toIcon())
         setShortLabel(context.packageManager.getApplicationLabel(applicationInfo))
         setLauncherIntent(shortcutIntent)
-        createShortcut()
-    }
+    }.createShortcut()
 }
 
 fun PackageInfo.launch(context: Context) {

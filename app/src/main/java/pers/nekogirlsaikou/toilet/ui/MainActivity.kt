@@ -21,12 +21,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var mAdapter:AppListAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Realm.init(this)
-        val realm_config = RealmConfiguration.Builder()
-            .allowWritesOnUiThread(true)
-            .allowQueriesOnUiThread(true)
-            .build()
-        Realm.setDefaultConfiguration(realm_config)
+        RealmUtil.initRealm(this)
 
         binding = ActivityMainBinding.inflate(this.layoutInflater)
         setContentView(binding.root)

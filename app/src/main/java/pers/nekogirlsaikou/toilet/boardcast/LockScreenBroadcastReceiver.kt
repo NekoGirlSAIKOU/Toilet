@@ -6,17 +6,13 @@ import android.content.Intent
 import android.util.Log
 import io.realm.Realm
 import io.realm.RealmConfiguration
+import pers.nekogirlsaikou.toilet.utils.RealmUtil
 import pers.nekogirlsaikou.toilet.utils.disable
 import pers.nekogirlsaikou.toilet.utils.isInToilet
 
 class LockScreenBroadcastReceiver: BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-        Realm.init(context)
-        val realm_config = RealmConfiguration.Builder()
-            .allowWritesOnUiThread(true)
-            .allowQueriesOnUiThread(true)
-            .build()
-        Realm.setDefaultConfiguration(realm_config)
+        RealmUtil.initRealm(context)
         when (intent.action){
             Intent.ACTION_SCREEN_OFF -> {
                 context.packageManager.getInstalledPackages(0).filter {

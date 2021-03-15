@@ -20,7 +20,7 @@ fun PackageInfo.disable() {
 }
 
 fun PackageInfo.enable() {
-    if {!applicationInfo.enabled}{
+    if (!applicationInfo.enabled){
         Root.runRootCommand("pm enable " + this.packageName)
     }
 }

@@ -6,11 +6,6 @@ import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.Icon
 import android.os.Build
 import io.realm.Realm
 import io.realm.kotlin.where
@@ -18,58 +13,58 @@ import pers.nekogirlsaikou.toilet.model.AppInToilet
 import pers.nekogirlsaikou.toilet.ui.LaunchAppActivity
 
 
-fun PackageInfo.disable(){
-    Root.runRootCommand("pm disable "+ this.packageName)
+fun PackageInfo.disable() {
+    Root.runRootCommand("pm disable " + this.packageName)
 }
 
-fun PackageInfo.enable(){
-    Root.runRootCommand("pm enable "+ this.packageName)
+fun PackageInfo.enable() {
+    Root.runRootCommand("pm enable " + this.packageName)
 }
 
-fun PackageInfo.uninstall(){
-    if (!applicationInfo.enabled){
+fun PackageInfo.uninstall() {
+    if (!applicationInfo.enabled) {
         enable()
     }
     Root.runRootCommand("pm uninstall " + this.packageName)
 }
 
-fun PackageInfo.dropToToilet(){
+fun PackageInfo.dropToToilet() {
     disable()
-    Realm.getDefaultInstance().executeTransaction{
+    Realm.getDefaultInstance().executeTransaction {
         it.insert(AppInToilet(this.packageName))
     }
 }
 
-fun PackageInfo.releaseFromToilet(){
+fun PackageInfo.releaseFromToilet() {
     enable()
     Realm.getDefaultInstance().executeTransaction {
         it.where<AppInToilet>()
-            .equalTo("packageName",this.packageName)
-            .findFirst()
-            ?.deleteFromRealm()
+                .equalTo("packageName", this.packageName)
+                .findFirst()
+                ?.deleteFromRealm()
     }
 }
 
-fun PackageInfo.isInToilet():Boolean{
+fun PackageInfo.isInToilet(): Boolean {
     return Realm.getDefaultInstance()
-        .where<AppInToilet>()
-        .equalTo("packageName",this.packageName)
-        .findFirst() != null
+            .where<AppInToilet>()
+            .equalTo("packageName", this.packageName)
+            .findFirst() != null
 }
 
-fun PackageInfo.createToiletAppShortcut(context: Context){
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+fun PackageInfo.createToiletAppShortcut(context: Context) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         val shortcutManager = context.getSystemService(ShortcutManager::class.java)
-        if (shortcutManager!!.isRequestPinShortcutSupported){
+        if (shortcutManager!!.isRequestPinShortcutSupported) {
             val shortcutIntent = Intent(context, LaunchAppActivity::class.java)
-                .setAction(Intent.ACTION_MAIN)
-                .putExtra("packageName",this.packageName)
+                    .setAction(Intent.ACTION_MAIN)
+                    .putExtra("packageName", this.packageName)
 
             val shortcutInfo = ShortcutInfo.Builder(context, "launch-${this.packageName}")
-                .setIcon(context.packageManager.getApplicationIcon(applicationInfo).toIcon())
-                .setShortLabel(context.packageManager.getApplicationLabel(this.applicationInfo))
-                .setIntent(shortcutIntent)
-                .build()
+                    .setIcon(context.packageManager.getApplicationIcon(applicationInfo).toIcon())
+                    .setShortLabel(context.packageManager.getApplicationLabel(this.applicationInfo))
+                    .setIntent(shortcutIntent)
+                    .build()
 
 
             //shortcutManager.requestPinShortcut(shortcutInfo, null)
@@ -78,18 +73,32 @@ fun PackageInfo.createToiletAppShortcut(context: Context){
             val pinnedShortcutCallbackIntent = shortcutManager.createShortcutResultIntent(shortcutInfo)
 
             val successCallback = PendingIntent.getBroadcast(context, /* request code */ 0,
-                pinnedShortcutCallbackIntent, /* flags */ 0)
+                    pinnedShortcutCallbackIntent, /* flags */ 0)
             shortcutManager.requestPinShortcut(shortcutInfo, successCallback.intentSender)
+        } else {
+            createToiletAppShortcut_legacy(context)
         }
     } else {
-        TODO("VERSION.SDK_INT < O")
+        createToiletAppShortcut_legacy(context)
     }
 }
 
-fun PackageInfo.launch (context:Context){
+private fun PackageInfo.createToiletAppShortcut_legacy(context: Context) {
+    val launcherIntent = Intent(context, LaunchAppActivity::class.java)
+            .setAction(Intent.ACTION_MAIN)
+            .putExtra("packageName", this.packageName)
+            .addCategory(Intent.CATEGORY_LAUNCHER)
+    val intent = Intent("com.android.launcher.action.INSTALL_SHORTCUT")
+            .putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,context.packageManager.getApplicationIcon(applicationInfo).toIcon())
+            .putExtra(Intent.EXTRA_SHORTCUT_NAME, context.packageManager.getApplicationLabel(this.applicationInfo))
+            .putExtra(Intent.EXTRA_SHORTCUT_INTENT, launcherIntent)
+    context.sendBroadcast(intent)
+}
+
+fun PackageInfo.launch(context: Context) {
     val launchIntent =
-        context.packageManager.getLaunchIntentForPackage(packageName)
-    if (launchIntent != null){
+            context.packageManager.getLaunchIntentForPackage(packageName)
+    if (launchIntent != null) {
         context.startActivity(launchIntent)
     }
 }

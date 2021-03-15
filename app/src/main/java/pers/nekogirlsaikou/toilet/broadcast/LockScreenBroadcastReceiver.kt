@@ -1,11 +1,8 @@
-package pers.nekogirlsaikou.toilet.boardcast
+package pers.nekogirlsaikou.toilet.broadcast
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.util.Log
-import io.realm.Realm
-import io.realm.RealmConfiguration
 import pers.nekogirlsaikou.toilet.utils.RealmUtil
 import pers.nekogirlsaikou.toilet.utils.disable
 import pers.nekogirlsaikou.toilet.utils.isInToilet

@@ -38,7 +38,7 @@
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
-        <receiver android:name=".boardcast.LockScreenBroadcastReceiver"  android:exported="true">
+        <receiver android:name=".broadcast.LockScreenBroadcastReceiver"  android:exported="true">
             <!--Seems useless-->
             <intent-filter>
                 <action android:name="android.intent.action.SCREEN_OFF" />

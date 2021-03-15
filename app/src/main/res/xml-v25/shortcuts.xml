@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="disable_all"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_lock_lock"
+        android:shortcutShortLabel="@string/shortcut_disable_all"
+        android:shortcutLongLabel="@string/shortcut_disable_all"
+        android:shortcutDisabledMessage="@string/shortcut_disable_all">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="pers.nekogirlsaikou.toilet"
+            android:targetClass="pers.nekogirlsaikou.toilet.ui.DisableAllActivity" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+</shortcuts>

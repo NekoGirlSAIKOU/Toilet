@@ -14,11 +14,15 @@ import pers.nekogirlsaikou.toilet.ui.LaunchAppActivity
 
 
 fun PackageInfo.disable() {
-    Root.runRootCommand("pm disable " + this.packageName)
+    if (applicationInfo.enabled){
+        Root.runRootCommand("pm disable " + this.packageName)
+    }
 }
 
 fun PackageInfo.enable() {
-    Root.runRootCommand("pm enable " + this.packageName)
+    if {!applicationInfo.enabled}{
+        Root.runRootCommand("pm enable " + this.packageName)
+    }
 }
 
 fun PackageInfo.uninstall() {

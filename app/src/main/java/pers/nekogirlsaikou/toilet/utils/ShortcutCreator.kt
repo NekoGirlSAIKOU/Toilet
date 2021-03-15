@@ -7,7 +7,7 @@ import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
 import android.graphics.drawable.Icon
 import android.os.Build
-import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 
 class ShortcutCreator(context: Context,id:String) {
     private val context = context
@@ -34,12 +34,16 @@ class ShortcutCreator(context: Context,id:String) {
 
     fun setIcon(icon: Icon){
         if (shortcutInfoBuilder == null){
-            createShortcutIntent!!.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,icon)
+            createShortcutIntent!!.putExtra(Intent.EXTRA_SHORTCUT_ICON,icon)
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 shortcutInfoBuilder!!.setIcon(icon)
             }
         }
+    }
+
+    fun setIcon(resId:Int){
+        setIcon(ContextCompat.getDrawable(context,resId)!!.toIcon())
     }
 
     fun setShortLabel(label:CharSequence){

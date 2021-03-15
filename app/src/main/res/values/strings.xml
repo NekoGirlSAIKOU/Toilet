@@ -18,4 +18,5 @@
     <string name="select_app">Click to drop into toilet</string>
     <string name="menu_create_shortcut">Create shortcut</string>
     <string name="shortcut_disable_all">Disable all</string>
+    <string name="create_disable_all_shortcut">Create disable all shortcut</string>
 </resources>

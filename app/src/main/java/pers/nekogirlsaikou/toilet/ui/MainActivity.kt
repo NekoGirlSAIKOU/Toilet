@@ -8,8 +8,6 @@ import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
-import io.realm.Realm
-import io.realm.RealmConfiguration
 import pers.nekogirlsaikou.toilet.R
 import pers.nekogirlsaikou.toilet.adapters.AppListAdapter
 import pers.nekogirlsaikou.toilet.databinding.ActivityMainBinding
@@ -85,6 +83,17 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 mAdapter.reloadApps()
+                true
+            }
+            R.id.create_disable_all_shortcut->{
+                val launcherIntent = Intent(this, DisableAllActivity::class.java)
+                    .setAction(Intent.ACTION_VIEW)
+                    .putExtra("packageName", this.packageName)
+                ShortcutCreator(this,"disable_all").apply {
+                    setShortLabel(getString(R.string.menu_disable_all))
+                    //setIcon(R.mipmap.ic_launcher_round)
+                    setLauncherIntent(launcherIntent)
+                }.createShortcut()
                 true
             }
             R.id.about -> {

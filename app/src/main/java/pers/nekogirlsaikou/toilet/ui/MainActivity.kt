@@ -1,4 +1,4 @@
-package pers.nekogirlsaikou.toilet.ui.main
+package pers.nekogirlsaikou.toilet.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,7 +13,6 @@ import io.realm.RealmConfiguration
 import pers.nekogirlsaikou.toilet.R
 import pers.nekogirlsaikou.toilet.adapters.AppListAdapter
 import pers.nekogirlsaikou.toilet.databinding.ActivityMainBinding
-import pers.nekogirlsaikou.toilet.ui.AboutActivity
 import pers.nekogirlsaikou.toilet.ui.app_selector.AppSelectorActivity
 import pers.nekogirlsaikou.toilet.utils.*
 

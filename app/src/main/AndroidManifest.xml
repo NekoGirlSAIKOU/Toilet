@@ -30,7 +30,14 @@
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
-        <receiver android:name=".boardcast.LockScreenBoardcastReceiver"  android:exported="true">
+        <activity
+            android:name=".ui.DisableAllActivity"
+            android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+        <receiver android:name=".boardcast.LockScreenBroadcastReceiver"  android:exported="true">
             <!--Seems useless-->
             <intent-filter>
                 <action android:name="android.intent.action.SCREEN_OFF" />

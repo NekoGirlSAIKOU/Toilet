@@ -9,7 +9,7 @@ import io.realm.RealmConfiguration
 import pers.nekogirlsaikou.toilet.utils.disable
 import pers.nekogirlsaikou.toilet.utils.isInToilet
 
-class LockScreenBoardcastReceiver: BroadcastReceiver() {
+class LockScreenBroadcastReceiver: BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         Realm.init(context)
         val realm_config = RealmConfiguration.Builder()

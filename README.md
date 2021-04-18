@@ -1,3 +1,4 @@
+Archived  
 # Toilet
 It is used to disable Apps to save power. You can simply open this App and click disabled App to open it like a folder.  
 This name toilet is just for fun.  
